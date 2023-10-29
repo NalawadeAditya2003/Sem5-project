@@ -1,0 +1,13 @@
+import json
+import boto3
+s3=boto3.client('s3')
+def lambda_handler(event,context):
+    bucket='adibucket-2003'
+    dataToUpload={}
+    dataToUpload['DEPT']='IT'
+    dataToUpload['NAME']='ADITYA'
+    dataToUpload['FILE']='Aditya_33'
+    fileName='Aditya_33'+'.json'
+    uploadByteStream=bytes(json.dumps(dataToUpload).encode('UTF-8'))
+    s3.put_object(Bucket=bucket,Key=fileName,Body=uploadByteStream)
+print('Object has been uploaded')
